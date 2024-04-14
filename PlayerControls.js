@@ -51,7 +51,7 @@ export class PlayerControls extends EventDispatcher {
 		this.shape = customObjects.createCylinder(2 ,2 ,3 ,false, 0);
 		
 
-		var moveMult=3;
+		var moveMult=1;
 
 		
 		this.updateMovementVector = function ( event ){
@@ -78,7 +78,7 @@ export class PlayerControls extends EventDispatcher {
 			switch ( event.code ) {
 
 				case 'ShiftLeft':
-				case 'ShiftRight': moveMult = 8; break;
+				case 'ShiftRight': moveMult = 3; break;
 
 				case 'KeyW': moveState.up = 1.0; break;
 				case 'KeyS': moveState.down = -1.0; break;
@@ -98,7 +98,7 @@ export class PlayerControls extends EventDispatcher {
 			switch ( event.code ) {
 
 				case 'ShiftLeft':
-				case 'ShiftRight': moveMult = 3; break;
+				case 'ShiftRight': moveMult = 1; break;
 
 				case 'KeyW': moveState.up = 0.0; break;
 				case 'KeyS': moveState.down = 0.0; break;
@@ -117,6 +117,10 @@ export class PlayerControls extends EventDispatcher {
 			event.preventDefault();
 
 		};
+
+		this.goingDirectrion = function (event ) {
+			return new Vector3((moveState.right + moveState.left),(moveState.up + moveState.down),0).normalize();
+		}
 
 		
 

@@ -30,23 +30,20 @@ scene.add(cube.shape);
 
 
 cube.domElement = renderer.domElement;
+var colliding;
 
 function keyDown(e){
 	cube.keydown(e);
+	if (e.code == "Space"){
+		if (colliding!=null){
+			myFunction();
+		}
+	}
 }
-var pivot = new THREE.Group();
-pivot.position.set(0,0,0);
-scene.add( pivot );
+
 var timePasses = 1;
 function keyUP(e){
 	cube.keyup(e);
-	if(e.code == "Space"){		
-		for(let i = 0; i < 50; i++){
-			timePasses = timePasses + 1;
-		console.log("Time passed" + timePasses)
-		Planet.updatePositions(planets, pivot, timePasses);
-		}
-	}
 }
 
 document.addEventListener( 'keydown', keyDown );
@@ -107,8 +104,10 @@ function animate() {
 	cube.updateMovementVector();
 	renderer.render( scene, camera );
 	timePasses ++;
-	Planet.updatePositions(planets, pivot, timePasses);
+	Planet.updatePositions(planets, timePasses);
 	
+	colliding =  Planet.getCollision(planets, cube.shape.position);
+
 	camera.translateX(cube.shape.position.x-camera.position.x);
 	camera.translateY(cube.shape.position.y-camera.position.y);
 

@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { log } from 'three/examples/jsm/nodes/Nodes.js';
 
 export class Planet {
     constructor(name, radius, orbitDistance, rotationSpeed, orbitTime){
@@ -21,12 +22,12 @@ export class Planet {
         return this.sphere;
     }
 
-    static updatePositions(planets, pivot, timePasses){
+    static updatePositions(planets, timePasses){
         let time = timePasses + 1; // Increment time
 
         for (let i = 0; i < planets.length; i++){
             let planet = planets[i];
-            pivot.add(planet.sphere);
+            
 
             // Calculate angle based on time and orbit time
             let angle = (time * 2 * Math.PI) / (planet.orbitTime * 24 * 60);
@@ -42,4 +43,13 @@ export class Planet {
             planet.sphere.rotation.y -= planet.rotationSpeed;
         }
     }
+    static getCollision(planets, playerPos){
+        for (let i = 0; i < planets.length; i++){
+            let planet = planets[i];
+            if (playerPos.distanceTo(planet.sphere.position)<10){
+                return planet;
+            }
+        }
+        return null;
+    };
 }
