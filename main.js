@@ -199,7 +199,7 @@ MercuryEvent.addEventListener('click', function(event) {
 // Define a function to handle link clicks
 function handlePlanetLinkClick(planetName) {
     // Construct the full URL of the HTML file corresponding to the planet
-    const url = `${window.location.origin}/${planetName.toLowerCase()}_details.html`;
+    const url = `${window.location.origin}/${planetName.toLowerCase()}.html`;
 
     // Open the HTML file in the current window
     window.location.href = url;
