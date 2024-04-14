@@ -99,6 +99,9 @@ camera.position.z = 100;
 var sun = customObjects.createSphere();
 scene.add(sun)
 
+var test_ring = customObjects.createRing();
+scene.add(test_ring)
+
 function animate() {
     requestAnimationFrame( animate );
 	

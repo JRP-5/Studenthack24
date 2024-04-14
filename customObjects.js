@@ -19,8 +19,15 @@ class customObjects {
         return tube; // Return the tube mesh for further manipulation if needed
     }
 
+    static createRing() {
+        const geometry = new THREE.RingGeometry(30,30,30,30,0,2*Math.PI);
+        const material = new THREE.MeshBasicMaterial({color: 0x0000ff });
+        const ring = new THREE.Mesh(geometry, material);
+        return ring; // Return the tube mesh for further manipulation if needed
+    }
+
     static createSphere() {
-        const geometry = new THREE.SphereGeometry(40);
+        const geometry = new THREE.SphereGeometry(60);
 
         const texture = new THREE.TextureLoader().load('./src/sun.png'); 
         const sun_surface = new THREE.MeshBasicMaterial({ map: texture });
