@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>My first three.js app</title>
+    <style>
+        body {
+            background: #000;
+            color: #eee;
+        }
+
+        a {
+            color: #0080ff;
+        }
+
+        b {
+            color: orange
+        }
+
+        body {
+            margin: 0;
+            font-family: "Lato", sans-serif;
+        }
+
+        .sidebar {
+            margin: 0;
+            padding: 0;
+            width: 200px;
+            background-color: #f1f1f1;
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+        }
+
+        .sidebar a {
+            display: block;
+            color: black;
+            padding: 16px;
+            text-decoration: none;
+        }
+
+        .sidebar a.active {
+            background-color: #89cff0;
+            color: white;
+        }
+
+        .sidebar a:hover:not(.active) {
+            background-color: #4c9ec7;
+            color: white;
+        }
+
+        div.content {
+            margin-left: 200px;
+            padding: 1px 16px;
+            height: 1000px;
+        }
+
+        @media screen and (max-width: 700px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .sidebar a {
+                float: left;
+            }
+
+            div.content {
+                margin-left: 0;
+            }
+        }
+
+        @media screen and (max-width: 400px) {
+            .sidebar a {
+                text-align: center;
+                float: none;
+            }
+        }
+    </style>
+    <link type="text/css" rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <div class="sidebar">
+        <a class="active">COSMIC MASTERS</a>
+        <a id="Mercury_link">Mercury Quiz</a>
+        <a id="Venus_link">Venus Quiz</a>
+        <a id="Earth_link">Earth Quiz</a>
+        <a id="Mars_link">Mars Quiz</a>
+        <a id="Jupiter_link">Jupiter Quiz</a>
+        <a id="Saturn_link">Saturn Quiz</a>
+        <a id="Uranus_link">Uranus Quiz</a>
+        <a id="Neptune_link">Neptune Quiz</a>
+        <a id="Pluto_link">Pluto Quiz</a>
+        <a id="About_link">About</a>
+    </div>
+    <div id="info">
+
+        <head>Our projrct</head><br>
+        <b>WASD</b> move, <b>Shift</b> Speed Up
+    </div>
+    <script type="module" src="/main.js"></script>
+
+</body>
+
+</head>
+
+</html>

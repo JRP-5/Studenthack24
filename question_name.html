@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Questions</title>
+    <style>
+        body {
+            background-image: url('https://images.pexels.com/photos/998641/pexels-photo-998641.jpeg?cs=srgb&dl=pexels-francesco-ungaro-998641.jpg&fm=jpg');
+            max-width: 100%;
+            height: auto;
+            max-height: 100%;
+            background-repeat: no-repeat;
+            background-size: cover;
+            z-index: 0;
+            font-family: monospace;
+        }
+
+        h1 {
+            z-index: 1;
+            color: white;
+        }
+
+        .header {
+
+            text-align: center;
+
+        }
+
+        .content {
+            vertical-align: middle;
+            position: relative;
+            text-align: center;
+            margin: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #question-stub {
+            color: white;
+        }
+
+        #question-answer {
+            font-size: 6vh;
+        }
+    </style>
+    <script>
+        let planetName = "Planet Name";
+        let qStub = "This is a question";
+        function onBodyLoad() {
+            // document.write("hi");
+            // document.write(window.score);
+            document.getElementById("planet-name").innerHTML = planetName;
+            document.getElementById("question-stub").innerHTML = qStub;
+        }
+    </script>
+</head>
+
+<body onload="onBodyLoad()">
+    <div class="header">
+        <h1 id="planet-name"></h1>
+    </div>
+    <div class="content">
+        <form>
+            <h1 id="question-stub"></h1>
+            <input type="text" id="question-answer"></input>
+        </form>
+    </div>
+    <div class="sketchfab-embed-wrapper"> <iframe title="Mercury" frameborder="0" allowfullscreen
+            mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking"
+            xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share
+            src="https://sketchfab.com/models/32347fa4ec1a4987b71f461a401d91c4/embed?autostart=1&camera=0"> </iframe>
+        <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a
+                href="https://sketchfab.com/3d-models/mercury-32347fa4ec1a4987b71f461a401d91c4?utm_medium=embed&utm_campaign=share-popup&utm_content=32347fa4ec1a4987b71f461a401d91c4"
+                target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Mercury </a> by <a
+                href="https://sketchfab.com/shooter24994?utm_medium=embed&utm_campaign=share-popup&utm_content=32347fa4ec1a4987b71f461a401d91c4"
+                target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Akshat </a> on <a
+                href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=32347fa4ec1a4987b71f461a401d91c4"
+                target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p>
+    </div>
+</body>
+
+</html>
