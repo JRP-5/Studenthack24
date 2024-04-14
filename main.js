@@ -89,12 +89,31 @@ planets.every(addToScene);
 // 	scene.add(planet.getSphere());
 // }
 
+function createOrbitPath(){
+	let orbitDistances = [57.9, 108.2, 149.6, 228.0, 778.5, 1432.0, 2867, 4515.0, 5906.4];
+	let orbitPath = [];
+	for (let i = 0; i < planets.length; i++){
+		let path = customObjects.createRing(60*Math.log(orbitDistances[i]/5),60*Math.log(orbitDistances[i]/5) + 0.2, 0xFFFFFFF
+		);
+		orbitPath.push(path);
+	}
+
+	return orbitPath
+}
+
+var paths = createOrbitPath();
+const addPath = (path) => scene.add(path);
+paths.every(addPath);
 
 
 camera.position.z = 100;
 
 var sun = customObjects.createSphere();
 scene.add(sun)
+
+
+var golden_ring = customObjects.createRingWithMat(195,215);
+scene.add(golden_ring)
 
 function animate() {
     requestAnimationFrame( animate );
@@ -179,7 +198,7 @@ MercuryEvent.addEventListener('click', function(event) {
 // Define a function to handle link clicks
 function handlePlanetLinkClick(planetName) {
     // Construct the full URL of the HTML file corresponding to the planet
-    const url = `${window.location.origin}/${planetName.toLowerCase()}_details.html`;
+    const url = `${window.location.origin}/${planetName.toLowerCase()}.html`;
 
     // Open the HTML file in the current window
     window.location.href = url;
