@@ -12,21 +12,20 @@ export class Planet {
         this.radius = radius;
         this.importantInfo = "text file";
         
-        
-
         //create the sphere of the planet
-        this.geometry = new THREE.SphereGeometry(radius); 
+        this.geometry = new THREE.SphereGeometry(5); 
         const material = new THREE.MeshBasicMaterial( { color: color.setHex(Math.random() * 0xffffff) } ); 
-        this.sphere = new THREE.Mesh( this.geometry, material ); 
+
+        const texture = new THREE.TextureLoader().load('./src/' +name+ '.jpg' ); 
+        const surface = new THREE.MeshBasicMaterial( { map:texture } );
+
+        this.sphere = new THREE.Mesh( this.geometry, surface ); 
         this.sphere.position.set(orbitDistance, 0, 0);
         
         // Create the orbit
         
-        
-        
+          
     } 
-
-    
     
 
     getSphere() {
@@ -38,10 +37,14 @@ export class Planet {
      * @param {Array of all planets} planets 
      */
      static updatePositions(planets, pivot, timePasses){
+        let time = timePasses
+        time += 1;
+
         //let timePasses = timePasses;
         for (let i =0; i<planets.length; i++){
             let plan = planets[i];
             pivot.add(plan.sphere);
+            let angle = (time*2*Math.PI)/(plan.orbitTime*24*60);
             // let dist = plan.orbitDistance*1000;
             // let orbitSpeed = plan.orbitTime/(2*Math.PI*24*60*60);
             // let velocity = dist*orbitSpeed;
@@ -51,13 +54,11 @@ export class Planet {
             // let ac = dist*(orbitSpeed**2);
             // let at = orbitSpeed**2/dist;
             // let angle = Math.atan(ac/at);
-            let x = plan.orbitDistance*Math.cos((this.timePasses*2*Math.PI)/plan.orbitTime);
-            let y = plan.orbitDistance*Math.sin((this.timePasses*2*Math.PI)/plan.orbitTime);
+            let x = (plan.orbitDistance)*Math.cos(angle);
+            let y = (plan.orbitDistance)*Math.sin(angle);
 
-            plan.sphere.rotateOnAxis(0.1);
-            console.log("help me");
-            
-            plan.sphere.position.set(x, y, 0);
+            //plan.sphere.rotateOnAxis(0.1);
+            plan.sphere.position.set(x,y,0);
         }
         
     }

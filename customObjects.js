@@ -19,6 +19,16 @@ class customObjects {
         return tube; // Return the tube mesh for further manipulation if needed
     }
 
+    static createSphere(){
+        const geometry = new THREE.SphereGeometry(40);
+
+        const texture = new THREE.TextureLoader().load('./src/sun.png' ); 
+        const sun_surface = new THREE.MeshBasicMaterial( { map:texture } );
+
+        const sphere = new THREE.Mesh(geometry, sun_surface);
+        return sphere; // Return the tube mesh for further manipulation if needed
+    }
+
 }
 
 export { customObjects };

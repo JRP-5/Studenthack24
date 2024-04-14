@@ -40,10 +40,12 @@ scene.add( pivot );
 var timePasses = 1;
 function keyUP(e){
 	cube.keyup(e);
-	if(e.code == "Space"){
-		timePasses = timePasses + 1;
+	if(e.code == "Space"){		
+		for(let i = 0; i < 50; i++){
+			timePasses = timePasses + 1;
 		console.log("Time passed" + timePasses)
 		Planet.updatePositions(planets, pivot, timePasses);
+		}
 	}
 }
 
@@ -64,7 +66,7 @@ directionalLight.castShadow = true;
 scene.add(directionalLight);
 
 function createPlanets(){
-	let planets = ["mercury", "venus", "earth", "mars", "jupiter", "saturn", "uranus", "neptune", "plut"];
+	let planets = ["mercury", "venus", "earth", "mars", "jupiter", "saturn", "uranus", "neptune", "pluto"];
 	let plans = [];
 	let diameters = [4879, 12104, 12756, 6792, 142984, 120536, 51118, 49528, 2376];
 	//diameters = [10] * 9
@@ -93,7 +95,8 @@ planets.every(addToScene);
 
 camera.position.z = 100;
 
-
+var sun = customObjects.createSphere();
+scene.add(sun)
 
 function animate() {
     requestAnimationFrame( animate );
@@ -102,6 +105,8 @@ function animate() {
 	
 	cube.updateMovementVector();
 	renderer.render( scene, camera );
+	timePasses ++;
+	Planet.updatePositions(planets, pivot, timePasses);
 	
 	camera.translateX(cube.shape.position.x-camera.position.x);
 	camera.translateY(cube.shape.position.y-camera.position.y);
