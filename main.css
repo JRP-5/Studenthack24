@@ -8,6 +8,10 @@ body {
     overscroll-behavior: none;
 }
 
+.head {
+    font-size: 100;
+}
+
 a {
     color: #ff0;
     text-decoration: none;
