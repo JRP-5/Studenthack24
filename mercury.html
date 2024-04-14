@@ -15,15 +15,45 @@
             background-size: cover;
             z-index: 1;
             font-family: monospace;
+            margin: 0;
+            padding: 0;
+            font-size: large;
         }
         .funfacts{
-            float: left;
+            position: relative;
+            display: inline-block;
+            float:left;            
+            color: white;
+            height: 100vh;
+            width: 30vw;
+            padding-right:2vw;
+            padding-left 2vw;
         }
         #frame-wrapper{
-            float:right;        
+            position: relative;
+            display: inline-block;
+            height: 100vh;
+            width: 30vw;    
+        }
+        .div-right{
+            position: relative;
+            display: inline-block;
+            float: right;
+            height: 100vh;
+            width: 30vw;
+            color: white;
+            padding: 0;
+            border: 0;
+            margin: 0;
         }
         #wrapper{
-            margin: auto;
+
+        }
+        #venus-age{
+            display: inline ;
+        }
+        li{
+            margin-bottom: 3vh; 
         }
     </style>
 </head>
@@ -32,36 +62,44 @@
 <div id="wrapper">
     <!--<div class="sketchfab-embed-wrapper">-->
     <div class="funfacts">
+        <h1>Mercury</h1>
+        <p>Mercury is the smallest planet in our solar system. It’s just a little bigger than Earth’s Moon. Mercury itself, though, doesn’t have any moons. It is the closest planet to the Sun, but it’s actually not the hottest. Venus is hotter.</p>
         <h2>Fun Facts about Mercury</h2>
         <ul>
+            <li>If you are <input size="3" oninput="onAgeChange()" id="age-input"></input> on Earth you would be <br> <p id="venus-age">__</p> on Mercury</li>
             <li>Mercury is the smallest planet in the solar system.</li>
             <li>It orbits very close to the Sun and has no moons.</li>
-            <li>A day on Mercury (one rotation) takes about 59 Earth days, but a year (one orbit around the Sun) is only about 88 Earth days!</li>
-            <li>Mercury has a very thin atmosphere, mostly made of oxygen, sodium, hydrogen, helium, and potassium.</li>
             <li>Temperatures on Mercury can range from -173°C at night to 427°C during the day—hot enough to melt lead!</li>
-            <li>Mercury's surface is covered in craters, similar to the Moon's, and has vast plains and steep cliffs.</li>
-            <li>Mercury is the closest planet to the Sun, but it's not the hottest. Venus, with its thick atmosphere, holds that title.</li>
-        </ul>
+            <li>Mercury is named after the Roman messenger god, who was known for his speed.</li>
     </div>
     <div id="frame-wrapper">
         <iframe title="Mercury" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true"
             allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport
             execution-while-not-rendered web-share id="mercury-model"
             src="https://sketchfab.com/models/32347fa4ec1a4987b71f461a401d91c4/embed?autostart=1&camera=0"
-            style="height:100vh;  width:60vw;">
+            style="height: 100vh; width:35vw;"></iframe>>
         </iframe>
     </div>
-    <!--<p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a
-                href="https://sketchfab.com/3d-models/mercury-32347fa4ec1a4987b71f461a401d91c4?utm_medium=embed&utm_campaign=share-popup&utm_content=32347fa4ec1a4987b71f461a401d91c4"
-                target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Mercury </a> by <a
-                href="https://sketchfab.com/shooter24994?utm_medium=embed&utm_campaign=share-popup&utm_content=32347fa4ec1a4987b71f461a401d91c4"
-                target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> Akshat </a> on <a
-                href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=32347fa4ec1a4987b71f461a401d91c4"
-                target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p>
-        -->
-    <!-- </div> -->
-
+    <div class="div-right">
+        <h1>Fact file</h1>
+            
+        <ul>    
+            <li>Day length: 59 Earth days</li>
+            <li>Year length: 88 Earth days</li>
+            <li>Moons: 0</li>
+        </ul>
+    </div>
 </div> 
+<script>
+    function onAgeChange(){
+        let age = document.getElementById("age-input").value;
+        if(age == ""){
+            document.getElementById("venus-age").innerHTML = "__";
+        }
+        document.getElementById("venus-age").innerHTML = Math.round(age /0.241);
+    }
+
+</script>
 </body>
 
 </html>
