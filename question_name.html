@@ -49,13 +49,16 @@
         }
     </style>
     <script>
-        let planetName = "Planet Name";
-        let qStub = "This is a question";
+        let planetName = "Planet closest to the sun";
+        let qStub = "What is this planets name?";
         function onBodyLoad() {
             // document.write("hi");
             // document.write(window.score);
             document.getElementById("planet-name").innerHTML = planetName;
             document.getElementById("question-stub").innerHTML = qStub;
+        }
+        function loadMerc() {
+            window.location.href = "/mercury.html";
         }
     </script>
 </head>
@@ -65,7 +68,7 @@
         <h1 id="planet-name"></h1>
     </div>
     <div class="content">
-        <form>
+        <form action="/mercury.html">
             <h1 id="question-stub"></h1>
             <input type="text" id="question-answer"></input>
         </form>
