@@ -19,10 +19,24 @@ class customObjects {
         return tube; // Return the tube mesh for further manipulation if needed
     }
 
-    static createRing() {
-        const geometry = new THREE.RingGeometry(30,30,30,30,0,2*Math.PI);
-        const material = new THREE.MeshBasicMaterial({color: 0x0000ff });
+    static  getRing(){
+         return this.ring;
+    }
+    
+
+    static createRing(innerRadius, outterRadius, Color) {
+        const geometry = new THREE.RingGeometry(innerRadius,outterRadius,300,300,0,2*Math.PI);
+        const material = new THREE.MeshBasicMaterial({color: Color });
         const ring = new THREE.Mesh(geometry, material);
+        return ring; // Return the tube mesh for further manipulation if needed
+    }
+
+    static createRingWithMat(innerRadius, outterRadius) {
+        const geometry = new THREE.RingGeometry(innerRadius,outterRadius,300,300,0,2*Math.PI);
+        const transMat = new THREE.MeshBasicMaterial({
+        color: 0xffFD01,
+        });
+        const ring = new THREE.Mesh(geometry, transMat);
         return ring; // Return the tube mesh for further manipulation if needed
     }
 
