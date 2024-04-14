@@ -11,7 +11,7 @@ import {
 var score = 0;
 
 const renderer = new THREE.WebGLRenderer({antialias: true});
-
+const rotationSpeed = 0.1; 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 scene.add(camera);
@@ -70,11 +70,12 @@ function createPlanets(){
 	let plans = [];
 	let diameters = [4879, 12104, 12756, 6792, 142984, 120536, 51118, 49528, 2376];
 	//diameters = [10] * 9
+	let rotationSpeed = [0.25,0.01,0.1,0.105,0.25,0.05,0.075,0.7,0.03]
 	let orbitDistances = [57.9, 108.2, 149.6, 228.0, 778.5, 1432.0, 2867, 4515.0, 5906.4];
-	let orbitTimes = [88, 224.7, 365.2, 687, 4331, 10,747, 30589, 59800, 90560];
+	let orbitTimes = [88, 224.7, 365.2, 687, 4331, 10747, 30589, 59800, 90560];
 
 	for (let i = 0; i < planets.length; i++){
-		let planet = new Planet(planets[i], 3*getDiameter(diameters[i]/2)/5, 60*Math.log(orbitDistances[i]/5), 
+		let planet = new Planet(planets[i], 3*getDiameter(diameters[i]/2), 60*Math.log(orbitDistances[i]/5), rotationSpeed[i],
 		getDiameter(orbitTimes[i])
 		);
 		plans.push(planet);
@@ -176,43 +177,20 @@ MercuryEvent.addEventListener('click', function(event) {
     myFunction();
 });
 
-const VenusEvent = document.getElementById('Venus_link');
-VenusEvent.addEventListener('click', function(event) {
-    myFunction();
+// Define a function to handle link clicks
+function handlePlanetLinkClick(planetName) {
+    // Construct the full URL of the HTML file corresponding to the planet
+    const url = `${window.location.origin}/${planetName.toLowerCase()}_details.html`;
+
+    // Open the HTML file in the current window
+    window.location.href = url;
+}
+
+// Get references to each planet link and add event listeners
+const planetLinks = document.querySelectorAll('.planet-link');
+planetLinks.forEach(link => {
+    const planetName = link.textContent.trim(); // Extract the planet name from the link text
+    link.addEventListener('click', () => handlePlanetLinkClick(planetName));
 });
 
-const EarthEvent = document.getElementById('Earth_link');
-EarthEvent.addEventListener('click', function(event) {
-    myFunction();
-});
-
-const MarsEvent = document.getElementById('Mars_link');
-MarsEvent.addEventListener('click', function(event) {
-    myFunction();
-});
-
-const JupiterEvent = document.getElementById('Jupiter_link');
-JupiterEvent.addEventListener('click', function(event) {
-    myFunction();
-});
-
-const SaturnEvent = document.getElementById('Saturn_link');
-SaturnEvent.addEventListener('click', function(event) {
-    myFunction();
-});
-
-const UranusEvent = document.getElementById('Uranus_link');
-UranusEvent.addEventListener('click', function(event) {
-    myFunction();
-});
-
-const NeptuneEvent = document.getElementById('Neptune_link');
-NeptuneEvent.addEventListener('click', function(event) {
-    myFunction();
-});
-
-const PlutoEvent = document.getElementById('Pluto_link');
-PlutoEvent.addEventListener('click', function(event) {
-    myFunction();
-});
 animate();

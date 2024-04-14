@@ -48,7 +48,7 @@ export class PlayerControls extends EventDispatcher {
 		// Code for displaying character
 			// is a cube for now
 		
-		this.shape = customObjects.createCylinder(10 ,10 ,3 ,false, 0);
+		this.shape = customObjects.createCylinder(2 ,2 ,3 ,false, 0);
 		
 
 		var moveMult=3;

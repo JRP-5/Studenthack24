@@ -1,65 +1,45 @@
 import * as THREE from 'three';
-import { log } from 'three/examples/jsm/nodes/Nodes.js';
-
 
 export class Planet {
-    constructor(name, radius, orbitDistance, orbitTime){
-        let color = new THREE.Color(0xffffff);
+    constructor(name, radius, orbitDistance, rotationSpeed, orbitTime){
         this.name = name;
         this.orbitDistance = orbitDistance;
         this.orbitTime = orbitTime;
-        this.pos = new THREE.Vector3(orbitDistance, 0, 0);
         this.radius = radius;
+        this.rotationSpeed = rotationSpeed;
         this.importantInfo = "text file";
         
-        //create the sphere of the planet
-        this.geometry = new THREE.SphereGeometry(5); 
-        const material = new THREE.MeshBasicMaterial( { color: color.setHex(Math.random() * 0xffffff) } ); 
-
-        const texture = new THREE.TextureLoader().load('./src/' +name+ '.jpg' ); 
-        const surface = new THREE.MeshBasicMaterial( { map:texture } );
-
-        this.sphere = new THREE.Mesh( this.geometry, surface ); 
+        // Create the sphere of the planet
+        const geometry = new THREE.SphereGeometry(radius);
+        const texture = new THREE.TextureLoader().load('./src/' + name + '.jpg');
+        const surface = new THREE.MeshBasicMaterial({ map: texture });
+        this.sphere = new THREE.Mesh(geometry, surface);
         this.sphere.position.set(orbitDistance, 0, 0);
-        
-        // Create the orbit
-        
-          
     } 
-    
 
     getSphere() {
         return this.sphere;
     }
 
-    /**
-     * 
-     * @param {Array of all planets} planets 
-     */
-     static updatePositions(planets, pivot, timePasses){
-        let time = timePasses
-        time += 1;
+    static updatePositions(planets, pivot, timePasses){
+        let time = timePasses + 1; // Increment time
 
-        //let timePasses = timePasses;
-        for (let i =0; i<planets.length; i++){
-            let plan = planets[i];
-            pivot.add(plan.sphere);
-            let angle = (time*2*Math.PI)/(plan.orbitTime*24*60);
-            // let dist = plan.orbitDistance*1000;
-            // let orbitSpeed = plan.orbitTime/(2*Math.PI*24*60*60);
-            // let velocity = dist*orbitSpeed;
-            
-            // let F = (velocity**2)/dist;
-            
-            // let ac = dist*(orbitSpeed**2);
-            // let at = orbitSpeed**2/dist;
-            // let angle = Math.atan(ac/at);
-            let x = (plan.orbitDistance)*Math.cos(angle);
-            let y = (plan.orbitDistance)*Math.sin(angle);
+        for (let i = 0; i < planets.length; i++){
+            let planet = planets[i];
+            pivot.add(planet.sphere);
 
-            //plan.sphere.rotateOnAxis(0.1);
-            plan.sphere.position.set(x,y,0);
+            // Calculate angle based on time and orbit time
+            let angle = (time * 2 * Math.PI) / (planet.orbitTime * 24 * 60);
+
+            // Calculate x and y coordinates in a circular fashion
+            let x = planet.orbitDistance * Math.cos(angle);
+            let y = planet.orbitDistance * Math.sin(angle);
+
+            // Set position relative to the origin (0, 0, 0)
+            planet.sphere.position.set(x, y, 0);
+
+            // Update rotation
+            planet.sphere.rotation.y -= planet.rotationSpeed;
         }
-        
     }
 }
